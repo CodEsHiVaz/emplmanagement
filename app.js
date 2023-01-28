@@ -33,7 +33,7 @@ hbs.registerHelper("isUnmarraied", function (value) {
   return value == "Unmarried";
 });
 
-hbs.registerPartials(path.join(__dirname, "./views/partials"), function (err) {
+hbs.registerPartials("./views/partials", function (err) {
   if (err) console.log("partial error", err);
 });
 // console.log(path.join(__dirname, "./views/partials"));

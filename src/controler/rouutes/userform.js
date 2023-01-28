@@ -5,7 +5,7 @@ const path = require("path");
 const homeRouter = Router();
 const validator = require("validator");
 let storage = multer.diskStorage({
-  destination: path.join(__dirname, "../../../uploads"),
+  destination: "../../../uploads",
   filename: (req, file, cb) => {
     cb(null, Date.now() + file.originalname);
   },
