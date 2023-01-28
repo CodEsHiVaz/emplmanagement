@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EMPLOYEE MANAGEMENT SYSTEM</title>
+    {{>bootstrapcss}}
+    <style>
+      input[aria-invalid="true"] {
+        border: 1px solid #f00;
+        box-shadow: 0 0 4px 0 #f00;
+
+      }
+
+      label {
+        font-size: 14px;
+        color: #6a6a6a;
+      }
+
+      input+label,
+      select+label {
+        font-size: 13px;
+        color: #e20606;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-sm my-5">
+      <form id="inputForm" class=" mw-50 row g-3 mx-5 p-3 shadow-sm rounded-4" name="inputForm" action="/register"
+        method="post" enctype="multipart/form-data">
+        <div class="col-md-12 text-center">
+          <h2>Employee Registration Form</h2>
+        </div>
+        <div class="col-md-12 mb-2 ">
+          <span class="text-danger fs-4"> `<strong> * </strong>` </span> <span class="fs-6">Represnts required
+            feilds</span>
+        </div>
+        <div class="col-md-6 mt-4" style="margin-bottom: -20px">
+          <p class="fw-bold text-primary">Contact Information:</p>
+        </div>
+        <div class="col-md-6"></div>
+
+        <div class="col-md-6">
+          <label for="inputfname" class="form-label"> First Name </label> <span class="text-danger fs-5">*</span>
+          {{#if body.first_name}}
+
+          <input required pattern="[A-Za-z]{3,50}" placeholder="First Name" value="{{body.first_name}}" type="text"
+            class="form-control bg-light" id="inputfname" name="first_name" />
+          {{/if}} {{#unless body.first_name}}
+          <input required placeholder="First Name" type="text" class="form-control bg-light" id="inputfname"
+            name="first_name" />
+          {{/unless}} {{#if err.first_name.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.first_name.message}}
+          </small>
+          {{/if}}
+
+
+        </div>
+        <div class="col-md-6">
+          <label for="inputmname" class="form-label">Middle Name</label> <span class="text-danger fs-5">*</span>
+          {{#if body.middle_name}}
+          <input required value="{{body.middle_name}}" placeholder="Middle Name" type="text"
+            class="form-control bg-light" id="inputmname" name="middle_name" />
+          {{/if}} {{#unless body.middle_name}}
+          <input required placeholder="Middle Name" type="text" class="form-control bg-light" id="inputmname"
+            name="middle_name" />
+          {{/unless}} {{#if err.middle_name.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.middle_name.message}}
+          </small>
+          {{/if}}
+       
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputlname" class="form-label">Last Name</label> <span class="text-danger fs-5">*</span>
+          {{#if body.last_name}}
+          <input required value="{{body.last_name}}" placeholder="Last Name" type="text" class="form-control bg-light"
+            id="inputlname" name="last_name" />
+          {{/if}} {{#unless body.last_name}}
+          <input required placeholder="Last Name" type="text" class="form-control bg-light" id="inputlname"
+            name="last_name" />
+          {{/unless }} {{#if err.last_name.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.last_name.message}}
+          </small>
+          {{/if}}
+       
+        </div>
+        <div class="col-md-6">
+          <label for="gender" class="form-label">Gender</label> <span class="text-danger fs-5">*</span>
+          {{#if body.gender}}
+          <select id="gender" value="{{body.gender}}" class="form-select bg-light" name="gender">
+            <option disabled>Choose Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          {{/if}} {{#unless body.gender}}
+          <select id="gender" class="form-select bg-light" name="gender">
+            <option selected disabled>Choose Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          {{/unless}} {{#if err.gender.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.gender.message}}
+          </small>
+          {{/if}}
+        </div>
+
+
+        <div class="col-md-6">
+          <label for="fathername" class="form-label">Father Name</label> <span class="text-danger fs-5">*</span>
+          {{#if body.father_name}}
+          <input required value="{{body.father_name}}" placeholder="Father Name" type="text"
+            class="form-control bg-light" id="fathername" name="father_name" />
+          {{/if}} {{#unless body.father_name}}
+          <input required placeholder="Father Name" type="text" class="form-control bg-light" id="fathername"
+            name="father_name" />
+          {{/unless}} {{#if err.father_name.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.father_name.message}}
+          </small>
+          {{/if}}
+      
+        </div>
+
+        <div class="col-md-6">
+          <label for="mother_name" class="form-label">Mother Name</label> <span class="text-danger fs-5">*</span>
+          {{#if body.mother_name}}
+          <input required value="{{body.mother_name}}" placeholder="Mother Name" type="text"
+            class="form-control bg-light" id="mother_name" name="mother_name" />
+          {{/if}} {{#unless body.mother_name}}
+          <input required placeholder="Mother Name" type="text" class="form-control bg-light" id="mother_name"
+            name="mother_name" />
+          {{/unless}} {{#if err.mother_name.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.mother_name.message}}
+          </small>
+          {{/if}}
+          <small style="font-size: 14px" id="mothernameerr_err" class="text-danger">
+          </small>
+        </div>
+        <div class="col-md-6">
+          <label for="inputmstate" class="form-label">Marital status</label> <span class="text-danger fs-5">*</span>
+          <select class="form-select bg-light" name="maritalstatus" id="maritalstatus">
+            <option selected disabled>Choose Marital status</option>
+            <option value="Married">Married</option>
+            <option value="Unmarried">Unmarried</option>
+
+          </select>
+
+        </div>
+
+        <div class="col-md-6">
+          <label for="number_of_kids" class="form-label">Number of Kids</label>
+          {{#if body.number_of_kids}}
+          <input value="{{body.number_of_kids}}" placeholder="Number of Kids" type="number"
+            class="form-control bg-light" id="number_of_kids" name="number_of_kids" />
+          {{/if}} {{#unless body.number_of_kids}}
+          <input placeholder="Number of Kids" type="number" class="form-control bg-light" id="number_of_kids"
+            name="number_of_kids" />
+          {{/unless}} {{#if err.number_of_kids.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.number_of_kids.message}}
+          </small>
+          {{/if}}
+        
+        </div>
+        <div class="col-md-4">
+          <label for="inputdob" class="form-label">Date of Birth</label> <span class="text-danger fs-5">*</span>
+          {{#if body.date_of_birth}}
+          <input required value="{{body.date_of_birth}}" type="date" class="form-control bg-light" id="inputdob"
+            name="date_of_birth" />
+          {{/if}} {{#unless body.date_of_birth}}
+          <input required type="date" class="form-control bg-light" id="inputdob" name="date_of_birth" />
+          {{/unless}} {{#if err.date_of_birth.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.date_of_birth.message}}
+          </small>
+          {{/if}}
+        </div>
+        <div class="col-md-4">
+          <label for="inputcob" class="form-label">City of Birth</label> <span class="text-danger fs-5">*</span>
+          {{#if body.city_of_birth}}
+          <input required value="{{body.city_of_birth}}" placeholder="City of Birth" type="text"
+            class="form-control bg-light" id="inputcob" name="city_of_birth" />
+          {{/if}} {{#unless body.city_of_birth}}
+          <input required placeholder="City of Birth" type="text" class="form-control bg-light" id="inputcob"
+            name="city_of_birth" />
+          {{/unless}} {{#if err.city_of_birth.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.city_of_birth.message}}
+          </small>
+          {{/if}}
+        </div>
+        <div class="col-md-4">
+          <label for="inputcntob" class="form-label">Country of Birth</label> <span class="text-danger fs-5">*</span>
+          {{#if body.country_of_birth}}
+          <input required value="{{body.country_of_birth}}" placeholder="Country of Birth" type="text"
+            class="form-control bg-light" id="inputcntob" name="country_of_birth" />
+          {{/if}} {{#unless body.country_of_birth}}
+          <input required placeholder="Country of Birth" type="text" class="form-control bg-light" id="inputcntob"
+            name="country_of_birth" />
+
+          {{/unless}} {{#if err.country_of_birth.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.country_of_birth.message}}
+          </small>
+          {{/if}}
+        </div>
+
+        <div class="col-md-6">
+          <label for="mobilenum" class="form-label">Phone Number</label> <span class="text-danger fs-5">*</span>
+          {{#if body.phone_number}}
+          <input required value="{{body.phone_number}}" placeholder="Phone Number" type="number"
+            class="form-control bg-light" id="mobilenum" name="phone_number" />
+          {{/if}} {{#unless body.phone_number}}
+          <input required placeholder="Phone Number" type="number" class="form-control bg-light" id="mobilenum"
+            name="phone_number" />
+          {{/unless}} {{#if err.phone_number.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.phone_number.message}}
+          </small>
+          {{/if}}
+
+        </div>
+        <div class="col-md-6">
+          <label for="whtspnmbr" class="form-label">WhatsApp Number</label> <span class="text-danger fs-5">*</span>
+          {{#if body.whatsApp_number}}
+          <input required value="{{body.whatsApp_number}}" placeholder="WhatsApp Number" type="number"
+            class="form-control bg-light" id="whtspnmbr" name="whatsApp_number" />
+          {{/if}} {{#unless body.whatsApp_number}}
+          <input required placeholder="WhatsApp Number" type="number" class="form-control bg-light" id="whtspnmbr"
+            name="whatsApp_number" />
+          {{/unless}} {{#if err.whatsApp_number.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.whatsApp_number.message}}
+          </small>
+          {{/if}}
+        
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label> <span class="text-danger fs-5">*</span>
+          {{#if body.email}}
+          <input required value="{{body.email}}" placeholder="Email" type="email" class="form-control bg-light"
+            id="inputEmail4" name="email" />
+          {{/if}} {{#unless body.email}}
+          <input required placeholder="Email" type="email" class="form-control bg-light" id="inputEmail4"
+            name="email" />
+          {{/unless}} {{#if err.email.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.email.message}}
+          </small>
+          {{/if}}
+         
+        </div>
+        <div class="col-md-6">
+          <label for="emcont" class="form-label">Emergency Contact</label> <span class="text-danger fs-5">*</span>
+          {{#if body.emergency_contact}}
+          <input required value="{{body.emergency_contact}}" placeholder="Emergency Contact" type="number"
+            class="form-control bg-light" id="emcont" name="emergency_contact" />
+          {{/if}} {{#unless body.emergency_contact}}
+          <input required placeholder="Emergency Contact" type="number" class="form-control bg-light" id="emcont"
+            name="emergency_contact" />
+          {{/unless}} {{#if err.emergency_contact.message}}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.emergency_contact.message}}
+          </small>
+          {{/if}}
+          
+        </div>
+
+        <div class="col-md-12">
+          <label for="dg" class="form-label text-primary fw-bold">Address</label> <span
+            class="text-danger fs-5">*</span>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="city" class="form-label">City</label> <span class="text-danger fs-5">*</span>
+              {{#if body.city}}
+              <input required value="{{body.city}}" placeholder="City" type="text" class="form-control bg-light"
+                id="city" name="city" />
+              {{/if}} {{#unless body.city}}
+              <input required placeholder="City" type="text" class="form-control bg-light" id="city" name="city" />
+              {{/unless}} {{#if err.city}}
+              <small style="font-size: 14px" class="text-danger">
+                {{err.city.message}}
+              </small>
+              {{/if}}
+            
+            </div>
+            <div class="col-md-6">
+              <label for="street_name" class="form-label">Street</label> <span class="text-danger fs-5">*</span>
+              {{#if body.street}}
+              <input required value="{{body.street}}" placeholder="Street" type="text" class="form-control bg-light"
+                id="street_name" name="street" />
+              {{/if}} {{#unless body.street}}
+              <input required placeholder="Street" type="text" class="form-control bg-light" id="street_name"
+                name="street" />
+              {{/unless}} {{#if err.street}}
+              <small style="font-size: 14px" class="text-danger">
+                {{err.street.message}}
+              </small>
+              {{/if}}
+             
+            </div>
+            <div class="col-md-6">
+              <label for="country" class="form-label">Country</label> <span class="text-danger fs-5">*</span>
+              {{#if body.country}}
+              <input required value="{{body.country}}" placeholder="Country" type="text" class="form-control bg-light"
+                id="country" name="country" />
+              {{/if}} {{#unless body.country}}
+              <input required placeholder="Country" type="text" class="form-control bg-light" id="country"
+                name="country" />
+
+              {{/unless}} {{#if err.country}}
+              <small style="font-size: 14px" class="text-danger">
+                {{err.country.message}}
+              </small>
+              {{/if}}
+             
+            </div>
+            <div class="col-md-6">
+              <label for="zip" class="form-label">Zip</label> <span class="text-danger fs-5">*</span>
+              {{#if body.zip}}
+              <input required value="{{body.zip}}" placeholder="Zip" type="number" class="form-control bg-light"
+                id="zip" name="zip" />
+              {{/if}} {{#unless body.zip}}
+              <input required placeholder="Zip" type="number" class="form-control bg-light" id="zip" name="zip" />
+
+              {{/unless}} {{#if err.zip}}
+              <small style="font-size: 14px" class="text-danger">
+                {{err.zip.message}}
+              </small>
+              {{/if}}
+          
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mt-4" style="margin-bottom: -40px">
+          <p class="fw-bold text-primary">Academic background:</p>
+        </div>
+
+        <div class="row g-2" id="academics">
+          {{#if body.education}} {{#each body.education}}
+          <div class="row g-3 myrowofacademic">
+            <div class="col-md-5">
+              <label for="inputDegree" class="form-label">Completed degree
+              </label> <span class="text-danger fs-5">*</span>
+              <select id="inputDegree" class="form-select bg-light" name="completed_degree">
+                <option>Choose Degree</option>
+
+                <option selected value="{{this.completed_degree}}">
+                  {{this.completed_degree}}
+                </option>
+                <option value="Certificate">Certificate</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Bachelor">Bachelor</option>
+                <option value="Master">Master</option>
+                <option value="soctorate">Doctorate</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <label for="inputFeild" class="form-label">Field of study</label> <span class="text-danger fs-5">*</span>
+              <select required id="inputFeild" class="form-select bg-light" name="feild_of_study">
+                <option>Choose Field</option>
+                <option selected value="{{this.feild_of_study}}">
+                  {{this.feild_of_study}}
+                </option>
+                <option value="Art's">Art's</option>
+                <option value="science">science</option>
+                <option value="commerce">commerce</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Medical ">Medical</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="Agriculture">Agriculture</option>
+              </select>
+
+            </div>
+            {{#if (isfirst @index)}}
+            <div class="col-md-2">
+              <label class="form-label"></label>
+              <button type="button" style="width: 100%" class="btn btn-outline-danger mt-2 remove">
+                <i class="fa-solid fa-xmark fs-5"></i>
+              </button>
+            </div>
+            {{else}}
+
+            <div class="col-md-2">
+              <label class="form-label"></label>
+              <button disabled type="button" style="width: 100%" class="btn btn-outline-danger mt-2 remove">
+                <i class="fa-solid fa-xmark fs-5"></i>
+              </button>
+            </div>
+
+            {{/if}}
+            <div class="col-md-12 border-bottom border-secondary"></div>
+          </div>
+
+          {{/each}} {{/if}} {{#unless body.education}}
+
+          <div class="row g-3 myrowofacademic">
+            <div class="col-md-5">
+              <label for="inputDegree" class="form-label">Completed degree
+              </label> <span class="text-danger fs-5">*</span>
+              <select id="inputDegree" class="form-select bg-light" name="completed_degree" required>
+                <option selected disabled>Choose Degree</option>
+                <option value="Certificate">Certificate</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Bachelor">Bachelor</option>
+                <option value="Master">Master</option>
+                <option value="Doctorate">Doctorate</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <label for="inputFeild" class="form-label">Field of study</label> <span class="text-danger fs-5">*</span>
+              <select id="inputFeild" class="form-select bg-light" name="feild_of_study" required>
+                <option selected disabled>Choose Field</option>
+                <option value="Art's">Art's</option>
+                <option value="science">science</option>
+                <option value="commerce">commerce</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Medical ">Medical</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="Agriculture">Agriculture</option>
+              </select>
+
+            </div>
+
+            <div class="col-md-2">
+              <label class="form-label"></label>
+              <button disabled type="button" style="width: 100%" class="btn btn-outline-danger mt-2 remove">
+                <i class="fa-solid fa-xmark fs-5"></i>
+              </button>
+            </div>
+            <div class="col-md-12 border-bottom border-secondary"></div>
+          </div>
+
+          {{/unless}}
+        </div>
+        <div class="col-md-6">
+          <button type="button" onclick="add_one_education()" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div class="col-md-6"></div>
+
+        <div class="col-md-6 mt-4" style="margin-bottom: -40px">
+          <p class="fw-bold text-primary">Professional background:</p>
+        </div>
+        <div class="col-md-6"></div>
+
+        <div class="row g-3" id="exp">
+          {{#if body.professional_experience}} {{#each
+          body.professional_experience}}
+          <div class="row g-3 expdivs">
+            <div class="col-md-12">
+              <label for="compmname" class="form-label">Company Name </label> <span class="text-danger fs-5">*</span>
+              <input required value="{{this.company_name}}" placeholder="Company Name" type="text"
+                class="form-control bg-light" id="compmname" name="company_name" />
+              <!-- {{#if err.[professional_experience.0.company_name]}}
+              <small style="font-size: 14px" class="text-danger">
+                {{err.[professional_experience.0.company_name].message}}
+              </small>
+              {{/if}} -->
+            </div>
+
+            <div class="col-md-6">
+              <label for="start_date" class="form-label">Start Date </label> <span class="text-danger fs-5">*</span>
+              <input required value="{{this.start_date}}" placeholder="Start Date" type="date"
+                class="form-control bg-light" id="start_date" name="start_date" />
+              {{#if err.[professional_experience.0.start_date]}}
+              <small style="font-size: 14px" class="text-danger">
+                {{err.[professional_experience.0.start_date].message}}
+              </small>
+              {{/if}}
+            </div>
+
+            <div class="col-md-6">
+              <label for="enddate" class="form-label">End Date </label> <span class="text-danger fs-5">*</span>
+              <input required value="{{this.end_date}}" placeholder="End Date" type="date" class="form-control bg-light"
+                id="enddate" name="end_date" />
+            </div>
+
+            <div class="col-md-6">
+              <label for="position" class="form-label">Position</label> <span class="text-danger fs-5">*</span>
+              <input required value="{{this.position}}" placeholder="Position" type="text" class="form-control bg-light"
+                id="position" name="position" />
+            </div>
+            <div class="col-md-6">
+              <label for="salery" class="form-label">Salary (in LPA)</label> <span class="text-danger fs-5">*</span>
+              <input required value="{{this.salery}}" placeholder="Salery" type="number" class="form-control bg-light"
+                id="salery" name="salery" />
+            </div>
+            <div class="col-md-10">
+              <label for="uploadDoc" class="form-label">Upload Documents
+              </label> <span class="text-danger fs-5">*</span>
+              <input multiple required value=./uploads/{{this.document}} type="file"
+                class="form-control bg-light fileuploadsp" id="uploadDoc" name="file_Documents" />
+            </div>
+            {{#if (isfirst @index)}}
+            <div class="col-md-2">
+              <label class="form-label"></label> <span class="text-danger fs-5">*</span>
+              <button type="button" style="width: 100%" class="btn btn-outline-danger mt-2 removec">
+                <i class="fa-solid fa-xmark fs-5"></i>
+              </button>
+            </div>
+            {{else}}
+            <div class="col-md-2">
+              <label class="form-label"></label> <span class="text-danger fs-5">*</span>
+              <button disabled type="button" style="width: 100%" class="btn btn-outline-danger mt-2 remove">
+                <i class="fa-solid fa-xmark fs-5"></i>
+              </button>
+            </div>
+            {{/if}}
+
+            <div class="col-md-12 border-bottom border-secondary"></div>
+          </div>
+          {{/each}} {{/if}} {{#unless body.professional_experience}}
+          <div class="row g-3 expdivs">
+            <div class="col-md-12">
+              <label for="compmname" class="form-label">Company Name </label> <span class="text-danger fs-5">*</span>
+              <input required placeholder="Company Name" type="text" class="form-control bg-light" id="compmname"
+                name="company_name" />
+            </div>
+
+            <div class="col-md-6">
+              <label for="start_date" class="form-label">Start Date </label> <span class="text-danger fs-5">*</span>
+              <input required placeholder="Start Date" type="date" class="form-control bg-light" id="start_date"
+                name="start_date" />
+            </div>
+
+            <div class="col-md-6">
+              <label for="enddate" class="form-label">End Date </label> <span class="text-danger fs-5">*</span>
+              <input required placeholder="End Date" type="date" class="form-control bg-light" id="enddate"
+                name="end_date" />
+            </div>
+
+            <div class="col-md-6">
+              <label for="position" class="form-label">Position</label> <span class="text-danger fs-5">*</span>
+              <input required placeholder="Position" type="text" class="form-control bg-light" id="position"
+                name="position" />
+            </div>
+            <div class="col-md-6">
+              <label for="salery" class="form-label">Salary (in LPA)</label> <span class="text-danger fs-5">*</span>
+              <input required placeholder="Salery" type="number" class="form-control bg-light" id="salery"
+                name="salery" />
+            </div>
+            <div class="col-md-10">
+              <label for="uploadDoc" class="form-label">Upload Documents
+              </label> <span class="text-danger fs-5">*</span>
+              <input multiple required type="file" class="form-control bg-light" id="uploadDoc" name="file_Documents" />
+            </div>
+            <div class="col-md-2">
+              <label class="form-label"></label>
+              <button disabled type="button" style="width: 100%" class="btn btn-outline-danger mt-2 remove">
+                <i class="fa-solid fa-xmark fs-5"></i>
+              </button>
+            </div>
+            <div class="col-md-12 border-bottom border-secondary"></div>
+          </div>
+          {{/unless}} {{#if err.[professional_experience.0.start_date] }}
+          <small style="font-size: 14px" class="text-danger">
+            {{err.[professional_experience.0.start_date].message}}
+          </small>
+          {{/if}}
+        </div>
+
+        <div class="col-md-6">
+          <button type="button" onclick="add_one_experience()" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div class="col-md-6"></div>
+
+        <div class="col-md-6 text-end">
+          <button type="submit" class="btn btn-success px-5">Submit</button>
+        </div>
+        <div class="col-md-6 text-start">
+          <a class="rounded text-decoration-none btn btn-outline-dark px-5" href="index">
+            Cancel</a>
+        </div>
+      </form>
+    </div>
+
+  </body>
+  {{>bootstrapScript}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+    integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/validator@latest/validator.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+  <script>
+    function add_one_education() {
+      const saperator = document.createElement("div");
+
+      saperator.classList.add("col-md-12", "border-bottom", "border-secondary");
+
+      const divhtml1 = `<label for="inputDegree" class="form-label">Completed degree </label> <span class="text-danger fs-5">*</span>
+                    <select  required id="inputDegree" class="form-select bg-light" name="completed_degree">
+                        <option selected disabled>Choose Degree</option>
+                        <option value="Certificate">Certificate</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Bachelor">Bachelor</option>
+                        <option value="Master">Master</option>
+                        <option value="Doctorate">Doctorate</option>
+                      
+                        <option value="License">License</option>
+                        </select>`;
+      const divhtml2 = `<label for="inputFeild" class="form-label">Field of study</label> <span class="text-danger fs-5">*</span>
+                    <select required id="inputFeild" class="form-select bg-light" name="feild_of_study">
+                        <option selected disabled>Choose Field</option>
+                        <option value="Art's">Art's</option>
+                        <option value="science">science</option>
+                        <option value="Commerce">commerce</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Medical ">Medical </option>
+                        <option value="Philosophy">Philosophy</option>
+                        <option value="Agriculture">Agriculture</option>
+                    </select>
+                    `;
+      const deletebutton = `<label  class="form-label"></label> 
+      <button type="button" style="width: 100%;" class="btn btn-outline-danger mt-2 remove"> <i class="fa-solid fa-xmark fs-5"></i></button>`;
+
+      const sel1 = document.createElement("div");
+      sel1.setAttribute("class", "col-md-5");
+      sel1.innerHTML = divhtml1;
+      const sel2 = document.createElement("div");
+      sel2.setAttribute("class", "col-md-5");
+      sel2.innerHTML = divhtml2;
+      const delb = document.createElement("div");
+      delb.setAttribute("class", "col-md-2");
+      delb.innerHTML = deletebutton;
+      const row = document.createElement("div");
+      row.classList.add("row", "g-3", "myrowofacademic");
+      row.append(sel1, sel2, delb, saperator);
+      document.querySelector("#academics").append(row);
+
+    }
+    function add_one_experience() {
+      const saperator = document.createElement("div");
+
+      saperator.classList.add("col-md-12", "border-bottom", "border-secondary");
+
+      const compDiv = document.createElement("div");
+      compDiv.setAttribute("class", "col-md-12");
+      compDiv.innerHTML = `<label for="compmname" class="form-label">Company Name </label> <span class="text-danger fs-5">*</span>
+                    <input required  placeholder="Company Name " type="text" class="form-control bg-light" id="compmname" name="company_name">`;
+      const startDate = document.createElement("div");
+      startDate.setAttribute("class", "col-md-6");
+      startDate.innerHTML = `<label for="start_date" class="form-label">Start Date </label> <span class="text-danger fs-5">*</span>
+                    <input required  placeholder="Start Date" type="date" class="form-control bg-light" id="start_date" name="start_date">`;
+      const endDate = document.createElement("div");
+      endDate.setAttribute("class", "col-md-6");
+      endDate.innerHTML = `  <label for="enddate" class="form-label">End Date </label> <span class="text-danger fs-5">*</span>
+                    <input required  placeholder="End Date" type="date" class="form-control bg-light" id="enddate" name="end_date">`;
+      const position = document.createElement("div");
+      position.setAttribute("class", "col-md-6");
+      position.innerHTML = `<label for="position" class="form-label">Position</label> <span class="text-danger fs-5">*</span>
+                    <input required  placeholder="Position" type="text" class="form-control bg-light" id="position" name="position">`;
+      const salery = document.createElement("div");
+      salery.setAttribute("class", "col-md-6");
+      salery.innerHTML = ` <label for="salery" class="form-label">Salary (in LPA)</label> <span class="text-danger fs-5">*</span>
+                    <input required  placeholder="Salary" type="number" class="form-control bg-light" id="salery" name="salery">`;
+      const uploadDoc = document.createElement("div");
+      uploadDoc.setAttribute("class", "col-md-10");
+      uploadDoc.innerHTML = ` <label for="uploadDoc" class="form-label">Upload Documents </label> <span class="text-danger fs-5">*</span>
+                    <input required placeholder="Upload Documents" type="file" class="form-control bg-light" id="uploadDoc" name="file_Documents">`;
+      const deletebutton = `<label  class="form-label"></label>
+      <button type="button" style="width: 100%;" class="btn btn-outline-danger mt-2 removec"> <i class="fa-solid fa-xmark fs-5"></i></button>`;
+      const delb = document.createElement("div");
+      delb.setAttribute("class", "col-md-2");
+      delb.innerHTML = deletebutton;
+      const row = document.createElement("div");
+      row.classList.add("row", "g-3", "expdivs");
+      row.append(
+        compDiv,
+        startDate,
+        endDate,
+        position,
+        salery,
+        uploadDoc,
+        delb,
+        saperator
+      );
+      document.querySelector("#exp").append(row);
+
+    }
+
+    $(document).ready(function () {
+      $(document).on("click", "button.remove", function () {
+        console.log($(this).closest(".myrowofacademic").remove());
+      });
+      $(document).on("click", "button.removec", function () {
+        console.log($(this).closest(".expdivs").remove());
+      });
+
+      $(function () {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear() - 18;
+        if (month < 10) month = "0" + month.toString();
+        if (day < 10) day = "0" + day.toString();
+        var minDate = year + "-" + month + "-" + day;
+        var maxDate = year + "-" + month + "-" + day;
+        $("#inputdob").attr("max", maxDate);
+      });
+
+      $("#inputForm").validate({
+        rules: {
+          first_name: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          middle_name: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          last_name: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          father_name: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          mother_name: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          gender: {
+            required: true,
+          },
+          maritalstatus: {
+            required: true,
+          },
+          date_of_birth: {
+            required: true,
+
+          },
+          city_of_birth: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          country_of_birth: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          phone_number: {
+            required: true,
+            validatenum: true
+          },
+
+          whatsApp_number: {
+            required: true,
+            validateWhatsAap: true
+          },
+
+          emergency_contact: {
+            required: true,
+            validatenum: true
+          },
+          email: {
+            required: true,
+            validateEmail: true
+          },
+          city: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          street: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          country: {
+            required: true,
+            minlength: 3,
+            maxlength: 50,
+            validateName: true
+          },
+          zip: {
+            required: true,
+            minlength: 6,
+            maxlength: 6,
+
+          },
+          completed_degree: {
+            required: true,
+          },
+          feild_of_study: {
+            required: true,
+          },
+
+        },
+        messages: {
+          gender: {
+            required: "Please select an Gender."
+          },
+
+          first_name: {
+            required: "First Name is required",
+
+          },
+          middle_name: {
+            required: "Middle Name is required",
+          },
+          last_name: {
+            required: "Last Name is required",
+          },
+          father_name: {
+            required: "Father Name is required",
+          },
+          mother_name: {
+            required: "Mother Name is required",
+          },
+
+          maritalstatus: {
+            required: "Marital status is required",
+          },
+          date_of_birth: {
+            required: "Date of Birth is required",
+          },
+          city_of_birth: {
+            required: "City of Birth is required",
+          },
+          country_of_birth: {
+            required: "Country of Birth is required",
+          },
+          phone_number: {
+            required: "Phone number is required",
+          },
+
+          whatsApp_number: {
+            required: "WhatsApp number is required",
+          },
+
+          emergency_contact: {
+
+            required: "Emergency number is required",
+          },
+          email: {
+            required: "Email id is required",
+          },
+          city: {
+            required: "City is required",
+          },
+          street: {
+            required: "Street is required",
+          },
+          country: {
+            required: "Country is required",
+          },
+          zip: {
+            required: "Zip code is required",
+
+          },
+          completed_degree: {
+            required: "Degree is required",
+          },
+          feild_of_study: {
+            required: " Feild is required"
+          },
+
+
+        }
+      });
+
+      jQuery.validator.addMethod("validateName", function (value, element) {
+        return this.optional(element) || validator.isAlpha(value);
+      }, `Entred value must be alphabates only`);
+
+
+      jQuery.validator.addMethod("validatenum", function (value, element) {
+        return this.optional(element) || validator.isMobilePhone(value.toString(), ["en-IN"])
+      }, `Invalid Mobile number`);
+
+
+      jQuery.validator.addMethod("validateWhatsAap", function (value, element) {
+        return this.optional(element) || validator.isMobilePhone(value.toString(), ["en-IN"])
+      }, `Invalid WhatsAap number`);
+
+      jQuery.validator.addMethod("validateEmail", function (value, element) {
+        return this.optional(element) || validator.isEmail(value)
+      }, `Invalid Email Address`);
+
+
+
+
+    });
+
+    // let fnametrue = false;
+    // const fname = document.querySelector("#inputfname")
+    // const fnamebox = document.getElementById("fname_err")
+    // fnamebox.style.visibility = "hidden"
+    // fname.addEventListener("input", function (event) {
+    //   if (!validator.isAlpha(event.target.value, ["en-IN"])) {
+    //     fnamebox.style.visibility = "visible"
+    //     fnamebox.innerText = "First name must be alphabtes only"
+    //     fname.classList.add("is-invalid")
+    //   }
+    //   else if (!validator.isLength(event.target.value, { min: 3, max: 50 })
+    //   ) {
+    //     // fname.setAttribute('invalid', '');
+    //     fname.classList.add("is-invalid")
+    //     // fname.style.border = "red 2px solid"
+    //     fnamebox.style.visibility = "visible"
+    //     fnamebox.innerText = "First name length must be between 3 to 50 alphabtes only"
+    //   }
+    //   else {
+    //     fnamebox.style.visibility = "hidden"
+    //     fnametrue = true;
+    //     fname.classList.remove("is-invalid")
+    //     // fname.style.border = "none"
+    //     // fname.removeAttribute('invalid');
+    //   }
+    //   if (event.target.value == "") {
+    //     // fname.setAttribute('invalid', '');
+    //     fnamebox.style.visibility = "visible"
+    //     fnamebox.innerText = "First name is required"
+    //     fname.classList.add("is-invalid")
+    //   }
+    // })
+
+    // let mnametrue = false;
+    // const middlename = document.querySelector("#inputmname")
+    // const mname = document.getElementById("mname_err")
+    // mname.style.visibility = "hidden"
+    // middlename.addEventListener("input", function (event) {
+    //   if (!validator.isAlpha(event.target.value, ["en-IN"])) {
+    //     mname.style.visibility = "visible"
+    //     mname.innerText = "Middle Name must be alphabtes only"
+    //     mname.classList.add("is-invalid")
+    //   }
+    //   else if (!validator.isLength(event.target.value, { min: 3, max: 50 })
+    //   ) {
+    //     mname.style.visibility = "visible"
+    //     mname.innerText = "Middle Name length must be between 3 to 50 alphabtes only"
+    //     middlename.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     mname.style.visibility = "hidden"
+    //     mnametrue = true;
+    //     middlename.classList.remove("is-invalid")
+    //   }
+
+    //   if (event.target.value == "") {
+    //     mname.style.visibility = "visible"
+    //     mname.innerText = "Middle name is required"
+    //     middlename.classList.add("is-invalid")
+    //   }
+    // })
+
+    // let lastNametrue = false;
+    // const lastName = document.querySelector("#inputlname")
+    // const lname = document.getElementById("lname_err")
+    // lname.style.visibility = "hidden"
+    // lastName.addEventListener("input", function (event) {
+    //   if (!validator.isAlpha(event.target.value, ["en-IN"])) {
+    //     lname.style.visibility = "visible"
+    //     lname.innerText = "Last Name must be alphabtes only"
+    //     lastName.classList.add("is-invalid")
+    //   }
+    //   else if (!validator.isLength(event.target.value, { min: 3, max: 50 })
+    //   ) {
+    //     lname.style.visibility = "visible"
+    //     lname.innerText = "Last Name length must be between 3 to 50 alphabtes only"
+    //     lastName.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     lname.style.visibility = "hidden"
+    //     lastNametrue = true;
+    //     lastName.classList.remove("is-invalid")
+    //   }
+    //   if (event.target.value == "") {
+    //     lname.style.visibility = "visible"
+    //     lastName.classList.add("is-invalid")
+    //     lname.innerText = "Last name is required"
+    //   }
+    // })
+
+    // let fatherNametrue = false;
+    // const fathName = document.querySelector("#fathername")
+    // const fathernameerr = document.getElementById("fathernameerr_err")
+    // fathernameerr.style.visibility = "hidden"
+    // fathName.addEventListener("input", function (event) {
+    //   if (!validator.isAlpha(event.target.value, ["en-IN"])) {
+    //     fathernameerr.style.visibility = "visible"
+    //     fathernameerr.innerText = "Father Name must be alphabtes only"
+    //     fathName.classList.add("is-invalid")
+    //   }
+    //   else if (!validator.isLength(event.target.value, { min: 3, max: 50 })
+    //   ) {
+    //     fathernameerr.style.visibility = "visible"
+    //     fathernameerr.innerText = "Father Name length must be between 3 to 50 alphabtes only"
+    //     fathName.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     fathernameerr.style.visibility = "hidden"
+    //     fatherNametrue = true;
+    //     fathName.classList.remove("is-invalid")
+    //   }
+    //   if (event.target.value == "") {
+    //     fathernameerr.style.visibility = "visible"
+    //     fathernameerr.innerText = "Father name  is required"
+    //     fathName.classList.add("is-invalid")
+    //   }
+    // })
+
+    // let motherNametrue = false;
+    // const mothName = document.querySelector("#mother_name")
+    // const mothernameerr = document.getElementById("mothernameerr_err")
+    // mothernameerr.style.visibility = "hidden"
+    // mothName.addEventListener("input", function (event) {
+    //   if (!validator.isAlpha(event.target.value, ["en-IN"])) {
+    //     mothernameerr.style.visibility = "visible"
+    //     mothernameerr.innerText = "Mother Name must be alphabtes only"
+    //     mothName.classList.add("is-invalid")
+    //   }
+    //   else if (!validator.isLength(event.target.value, { min: 3, max: 50 })
+    //   ) {
+    //     mothernameerr.style.visibility = "visible"
+    //     mothernameerr.innerText = "Mother Name length must be between 3 to 50 alphabtes only"
+    //     mothName.classList.add("is-invalid")
+
+    //   }
+    //   else {
+    //     mothernameerr.style.visibility = "hidden"
+    //     motherNametrue = true;
+    //     mothName.classList.remove("is-invalid")
+
+    //   }
+    //   if (event.target.value == "") {
+    //     mothernameerr.style.visibility = "visible"
+    //     mothernameerr.innerText = "Mother Name is required"
+    //     mothName.classList.add("is-invalid")
+
+    //   }
+    // })
+
+    // const kidsval = document.getElementById("number_of_kids")
+    // const marird = document.getElementById("flexRadioDefault1")
+    // const kidnums = document.getElementById("kidnums")
+    // kidnums.style.visibility = "hidden"
+    // marird.addEventListener("change", function (event) {
+    //   if (event.target.value == "Married") {
+    //     kidnums.setAttribute("required", "");
+    //     kidnums.innerText = "if married then this required"
+    //     kidnums.style.visibility = "visible"
+    //   }
+
+    // })
+    // kidsval.addEventListener("input", function (event) {
+    //   if (event.target.value < 0) {
+    //     kidnums.innerText = "This must not be empty"
+    //   }
+    //   else {
+
+    //     kidnums.style.visibility = "hidden"
+
+    //   }
+
+
+
+    // })
+
+
+    // let phonenumtrue = false;
+    // const phoneNum = document.querySelector("#mobilenum")
+    // const phoneNumerr = document.getElementById("phoneNumerr_err")
+    // phoneNumerr.style.visibility = "hidden"
+    // phoneNum.addEventListener("input", function (event) {
+    //   if (!validator.isMobilePhone(event.target.value.toString(), ["en-IN"])) {
+    //     phoneNumerr.style.visibility = "visible"
+    //     phoneNumerr.innerText = "Phone number is not valid"
+    //     phoneNum.classList.add("is-invalid")
+
+    //   }
+    //   else {
+    //     phoneNumerr.style.visibility = "hidden"
+    //     phonenumtrue = true;
+    //     phoneNum.classList.remove("is-invalid")
+
+    //   }
+    //   if (event.target.value == "") {
+    //     phoneNumerr.style.visibility = "visible"
+    //     phoneNumerr.innerText = "Phone number is required"
+    //     phoneNum.classList.add("is-invalid")
+
+    //   }
+    // })
+
+
+    // let whtspnumtrue = false;
+    // const whatseNum = document.querySelector("#whtspnmbr")
+    // const whatNumerr = document.getElementById("whatsapNumerr_err")
+    // whatNumerr.style.visibility = "hidden"
+    // whatseNum.addEventListener("input", function (event) {
+    //   if (!validator.isMobilePhone(event.target.value.toString(), ["en-IN"])) {
+    //     whatNumerr.style.visibility = "visible"
+    //     whatNumerr.innerText = "Whatsaap number is not valid"
+    //     whatseNum.classList.add("is-invalid")
+
+    //   }
+    //   else {
+    //     whatNumerr.style.visibility = "hidden"
+    //     whtspnumtrue = true;
+    //     whatseNum.classList.remove("is-invalid")
+    //   }
+    //   if (event.target.value == "") {
+    //     whatNumerr.style.visibility = "visible"
+    //     whatNumerr.innerText = "WhatsAap number is required"
+    //     whatseNum.classList.add("is-invalid")
+    //   }
+    // })
+    // let emcontrue = false;
+    // const emcontval = document.querySelector("#emcont")
+    // const emerrr = document.getElementById("emcont_err")
+    // emerrr.style.visibility = "hidden"
+    // emcontval.addEventListener("input", function (event) {
+    //   if (!validator.isMobilePhone(event.target.value.toString(), ["en-IN"])) {
+    //     emerrr.style.visibility = "visible"
+    //     emerrr.innerText = "not a valid Phone number"
+    //     emcontval.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     emerrr.style.visibility = "hidden"
+    //     emcontrue = true;
+    //     emcontval.classList.remove("is-invalid")
+    //   }
+    //   if (event.target.value == "") {
+    //     emerrr.style.visibility = "visible"
+    //     emerrr.innerText = "Emergency contact number is required"
+    //     emcontval.classList.add("is-invalid")
+    //   }
+
+    // })
+
+    // let emailTrue = false;
+    // const emailval = document.querySelector("#inputEmail4")
+    // const emailerr = document.getElementById("emailerrr")
+    // emailerr.style.visibility = "hidden"
+    // emailval.addEventListener("input", function (event) {
+    //   if (!validator.isEmail(event.target.value)) {
+    //     emailerr.style.visibility = "visible"
+    //     emailerr.innerText = "Email is not valid"
+    //     emailval.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     emailerr.style.visibility = "hidden"
+    //     emailTrue = true;
+    //     emailval.classList.remove("is-invalid")
+    //   }
+    //   if (event.target.value == "") {
+    //     emailerr.style.visibility = "visible"
+    //     emailerr.innerText = "Email is required"
+    //     emailval.classList.add("is-invalid")
+    //   }
+    // })
+
+    // let cityTrue = false;
+    // const cityval = document.querySelector("#city")
+    // const cityerr = document.getElementById("city_err")
+    // cityerr.style.visibility = "hidden"
+    // cityval.addEventListener("input", function (event) {
+    //   if (event.target.value == "") {
+    //     cityerr.style.visibility = "visible"
+    //     cityerr.innerText = "city name is required"
+    //     cityval.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     cityerr.style.visibility = "hidden"
+    //     cityTrue = true;
+    //     cityval.classList.remove("is-invalid")
+    //   }
+
+    // })
+
+    // let streetTrue = false;
+    // const stretval = document.querySelector("#street_name")
+    // const streeterr = document.getElementById("street_err")
+    // streeterr.style.visibility = "hidden"
+    // stretval.addEventListener("input", function (event) {
+    //   if (event.target.value == "") {
+    //     streeterr.style.visibility = "visible"
+    //     streeterr.innerText = "Street name is required"
+    //     stretval.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     streeterr.style.visibility = "hidden"
+    //     streetTrue = true;
+    //     stretval.classList.remove("is-invalid")
+    //   }
+    // })
+
+
+    // let countryTrue = false;
+    // const countryval = document.querySelector("#country")
+    // const countryerr = document.getElementById("country_err")
+    // countryerr.style.visibility = "hidden"
+    // countryval.addEventListener("input", function (event) {
+
+    //   if (event.target.value == "") {
+    //     countryerr.style.visibility = "visible"
+    //     countryerr.innerText = "Country name  is required"
+    //     countryval.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     countryerr.style.visibility = "hidden"
+    //     countryTrue = true;
+    //     countryval.classList.remove("is-invalid")
+    //   }
+    // })
+
+
+    // let zipTrue = false;
+    // const zipVal = document.querySelector("#zip")
+    // const ziperr = document.getElementById("zip_err")
+    // ziperr.style.visibility = "hidden"
+    // zipVal.addEventListener("input", function (event) {
+    //   if (!validator.isPostalCode(event.target.value, "IN")) {
+    //     ziperr.style.visibility = "visible"
+    //     ziperr.innerText = "zip code is not valid"
+    //     zipVal.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     ziperr.style.visibility = "hidden"
+    //     zipTrue = true;
+    //     zipVal.classList.remove("is-invalid")
+    //   }
+    //   if (event.target.value == "") {
+    //     ziperr.style.visibility = "visible"
+    //     ziperr.innerText = "Zip code is required"
+    //     zipVal.classList.add("is-invalid")
+    //   }
+    // })
+    // const degree = document.querySelector("#inputDegree")
+    // const feild = document.querySelector("#inputFeild")
+    // const feilder = document.querySelector("#feild")
+    // feilder.style.visibility = "hidden"
+    // degree.addEventListener("change", function () {
+    //   if (degree.value !== "Certificate" || degree.value !== "Diploma" || degree.value !== "Bachelor" || degree.value !== "Master" || degree.value !== "Doctorate") {
+
+    //     feilder.style.visibility = "visible"
+    //     degree.classList.add("is-invalid")
+    //     feild.classList.add("is-invalid")
+    //   }
+    //   else {
+    //     degree.classList.remove("is-invalid")
+    //   }
+    // })
+    // feild.addEventListener("change", function () {
+    //   feilder.style.visibility = "hidden"
+    //   feild.classList.remove("is-invalid")
+    //     degree.classList.remove("is-invalid")
+    // })
+
+
+
+  </script>
+
+</html>

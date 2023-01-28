@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EMPLOYEE MANAGEMENT SYSTEM</title>
+  </head>
+
+  <body>
+    <!-- <form action="/employees/searchemp/" method="post" class="row g-3"> -->
+    <div class="col-md-8">
+      <input
+        type="text"
+        class="form-control"
+        name="query"
+        id="searchbox"
+        placeholder="Search.."
+      />
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" name="searchby">
+        <option selected value="name">Search by Name</option>
+        <!-- <option value="2">Search by Date of birth</option> -->
+        <option value="cityofbirth">Search by city of birth</option>
+        <option value="countryofbirth">Search by Country of birth</option>
+        <option value="gender">Search by Gender</option>
+        <option value="city">Search by city</option>
+        <option value="country">Search by Country</option>
+        <option value="studyfeild">Search by field of study</option>
+        <option value="drgree">Search by Degree</option>
+      </select>
+    </div>
+
+    <div class="col-md-1">
+      <!-- <button type="button" class="btn btn-primary w-auto"> -->
+      <a href="searchemp?searchby=name&query=Arun">
+        <i class="fa-solid fa-magnifying-glass"></i
+      ></a>
+      <!-- </button> -->
+    </div>
+    <!-- </form> -->
+  </body>
+  <script>
+  
+  </script>
+</html>

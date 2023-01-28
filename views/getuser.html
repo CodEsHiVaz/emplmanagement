@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {{>bootstrapcss}}
+  </head>
+  <body>
+    <div>
+      <div
+        class="row w-75 p-5 border-dark mb-3 rounded-2 mx-auto g-2 mt-2 shadow bg-body rounded"
+      >
+        <div class="col-md-12">
+          <p
+            class="h1 text-primary fs-1 fw-bold text-center text-decoration-underline mt-1 mb-2"
+          >
+            {{user.first_name}} {{user.last_name}}
+          </p>
+        </div>
+        <div class="col-md-12">
+          <p class="h5 text-primary text-decoration-underline mt-4 mb-2">
+            Contact Information
+          </p>
+        </div>
+        <div class="col-md-2"><p class="h6">Employee Name:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.first_name}} {{user.middle_name}} {{user.last_name}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Mother's Name:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.mother_name}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Father's Name:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.father_name}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Gender:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.gender}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Date of Birth:</p></div>
+        <div class="col-md-4 text-start">
+          <p id="dob">{{user.date_of_birth}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">City of Birth:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.city_of_birth}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Country of Birth:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.country_of_birth}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Marital status:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.maritial_status}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Number of Kids:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.number_of_kids}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Email:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.email}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Phone Number:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.phone_number}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">WhatsApp Number:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.whatsApp_number}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Emergency Contact:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.emergency_contact}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Address:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{user.street}}, {{user.city}},{{user.country}}, {{user.zip}}.</p>
+        </div>
+        <div class="col-md-12">
+          <p class="h5 text-primary text-decoration-underline mt-4 mb-2">
+            Academic background:
+          </p>
+        </div>
+        {{#each user.education}}
+        <div class="col-md-2"><p class="h6">Completed degree:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{this.completed_degree}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Field of study:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{this.feild_of_study}}</p>
+        </div>
+        {{/each}}
+        <div class="col-md-12">
+          <p class="h5 text-primary text-decoration-underline mt-4 mb-2">
+            Professional background:
+          </p>
+        </div>
+        {{#each user.professional_experience}}
+        <div class="col-md-2"><p class="h6">Company Name:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{this.company_name}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6"></p></div>
+        <div class="col-md-4 text-start">
+          <p></p>
+        </div>
+        <div class="col-md-2"><p class="h6">Start Date:</p></div>
+        <div class="col-md-4 text-start">
+          <p id="start_date">{{this.start_date}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">End Date:</p></div>
+        <div class="col-md-4 text-start">
+          <p id="end_date">{{this.end_date}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Possition:</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{this.position}}</p>
+        </div>
+        <div class="col-md-2"><p class="h6">Salery (In LPA):</p></div>
+        <div class="col-md-4 text-start">
+          <p>{{this.salery}}</p>
+        </div>
+        <div class="col-md-2 mb-3"><p class="h6">Document:</p></div>
+        <div class="col-md-4 text-start">
+          <a href="../uploads/{{this.document}}" target="_blank">
+            view document</a
+          >
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-12 border-bottom border-secondary px-5"></div>
+        {{/each}}
+      </div>
+    </div>
+  </body>
+  {{>bootstrapScript}}
+  <script>
+    let dobs = document.querySelectorAll("#dob");
+    dobs.forEach(
+      (elem) =>
+        (elem.innerHTML = new Date(elem.textContent).toLocaleDateString())
+    );
+    let starts = document.querySelectorAll("#start_date");
+    starts.forEach(
+      (elem) =>
+        (elem.innerHTML = new Date(elem.textContent).toLocaleDateString())
+    );
+    let end = document.querySelectorAll("#end_date");
+    end.forEach(
+      (elem) =>
+        (elem.innerHTML = new Date(elem.textContent).toLocaleDateString())
+    );
+  </script>
+</html>
